@@ -4,6 +4,7 @@ import { IconButton } from "@material-ui/core";
 import { Send } from "@material-ui/icons";
 import { APP_URL } from "../../config/constants"
 import instance from '../../config/axios';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [longUrl, setLongUrl] = useState('')
@@ -17,6 +18,12 @@ const Home = () => {
         });
         console.log(longUrl, " -> ", data[0].shortUrl)
         setShortUrl(APP_URL.concat('/', data[0].shortUrl))
+    }
+
+    const RedirectToMainPage = e => {
+        e.preventDefault();
+        window.open(shortUrl, '_blank').focus();
+        //window.location.replace(shortUrl);
     }
 
     return (
@@ -40,7 +47,10 @@ const Home = () => {
             </form>
             <div className="home__center mt-50">
 
-                {shortUrl ? <>Shortened URL is <span style={{ color: 'red' }}>{shortUrl} 🎉</span></> : ``}
+                {shortUrl ?
+                    <>Shortened URL is <Link to='/' onClick={RedirectToMainPage} style={{ color: 'blue' }}>{shortUrl}</Link> 🎉 </>
+                    :
+                    ``}
 
             </div>
         </div>

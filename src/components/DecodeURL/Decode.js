@@ -17,6 +17,7 @@ function Decode() {
             .catch(error => {
                 return history.push("/");
             })
+        // eslint-disable-next-line
     }, []);
 
     return <div></div>;
