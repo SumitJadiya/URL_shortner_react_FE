@@ -20,6 +20,7 @@ const Home = () => {
 
         if (!longUrl) notify()
         else {
+            setError('')
             const { data } = await instance.post(`/`, {
                 longString: longUrl
             });
