@@ -9,15 +9,23 @@ import { Link } from 'react-router-dom';
 const Home = () => {
     const [longUrl, setLongUrl] = useState('')
     const [shortUrl, setShortUrl] = useState('')
+    const [error, setError] = useState('')
+
+    const notify = () => {
+        setError("Please enter a valid URL")
+    };
 
     const handleLongUrl = async e => {
         e.preventDefault();
 
-        const { data } = await instance.post(`/`, {
-            longString: longUrl
-        });
-        console.log(longUrl, " -> ", data[0].shortUrl)
-        setShortUrl(APP_URL.concat('/', data[0].shortUrl))
+        if (!longUrl) notify()
+        else {
+            const { data } = await instance.post(`/`, {
+                longString: longUrl
+            });
+            console.log(longUrl, " -> ", data[0].shortUrl)
+            setShortUrl(APP_URL.concat('/', data[0].shortUrl))
+        }
     }
 
     const RedirectToMainPage = e => {
@@ -30,6 +38,9 @@ const Home = () => {
         <div>
             <div className="home__center">
                 <h1>URL Shortener</h1>
+            </div>
+            <div className="home__center">
+                <h5 style={{ "color": "red" }}>{error ? error : ``}</h5>
             </div>
             <form>
                 <div className="home__inputContainer">
