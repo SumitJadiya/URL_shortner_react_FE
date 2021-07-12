@@ -1,4 +1,4 @@
-# Getting Started with URL Shortner App
+# Getting Started with URL Shortner App UI
 
 <br />
 <p>This app encodes the long URL(provided in input box) to 7 character string.</p>
@@ -19,3 +19,6 @@
 <p>when user provides valid image url to shorten.</p>
 
 <img src="./images/url_encoding.png"/>
+
+### App Backend URL
+https://github.com/SumitJadiya/URL_shortner_node_backend
